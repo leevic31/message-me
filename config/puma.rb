@@ -65,4 +65,4 @@ on_worker_boot do
 end
 
 # For WebSockets
-bind "tcp://0.0.0.0:3000"
+# bind "tcp://0.0.0.0:3000"
