@@ -54,3 +54,15 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
+
+workers Integer(ENV['WEB_CONCURRENCY'] || 2)
+threads threads_count, threads_count
+
+preload_app!
+
+on_worker_boot do
+  ActiveRecord::Base.establish_connection
+end
+
+# For WebSockets
+bind "tcp://0.0.0.0:3000"
